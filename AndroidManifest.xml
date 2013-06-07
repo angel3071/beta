@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.graficador"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="16" />
+<uses-permission
+        android:name="android.permission.INTERNET" />
+    
+    <application
+        android:allowBackup="true"
+        android:debuggable="true"
+        android:icon="@drawable/ic_launcher_web"
+        android:label="@string/app_name"
+        
+        android:theme="@style/AppTheme" >
+        
+        <activity
+            android:name="com.example.graficador.Login"
+            android:windowSoftInputMode="stateHidden"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.graficador.Principal"
+            android:label="@string/title_activity_principal" >
+        </activity>
+        <activity
+            android:name="com.example.graficador.Nacional"
+            android:label="@string/title_activity_nacional" >
+        </activity>
+        <activity
+            android:name="com.example.graficador.IndPorSist"
+            android:label="@string/title_activity_ind_por_sist" >
+        </activity>
+        <activity
+            android:name="com.example.graficador.Andh"
+            android:label="@string/title_activity_andh" >
+        </activity>
+        <activity
+            android:name="com.example.graficador.GraficaActivity"
+            android:label="@string/title_activity_grafica" >
+        </activity>
+        <activity
+            android:name="com.example.graficador.Grafica"
+            android:label="@string/title_activity_grafica" >
+        </activity>
+    </application>
+
+</manifest>
