@@ -84,11 +84,30 @@ public class IndPorSist extends Activity {
                     int position, long id) {
  
                 // Sending image id to FullScreenActivity
-            	new ReadJSON().execute(url);
+            	//new ReadJSON().execute(url);
 //                Intent i = new Intent(getApplicationContext(), Grafica.class);
 //                // passing array index
 //                i.putExtra("id", position);
 //                startActivity(i);
+            	HashMap<String, String> abe = new HashMap<String, String>();
+            	abe.put("AGUASCALIENTES", "100");
+            	abe.put("BAJA CALIFORNIA", "70");
+            	abe.put("BAJA CALIFORNIA SUR", "15");
+            	abe.put("CAMPECHE", "100");
+            	abe.put("COAHUILA", "85");
+            	abe.put("COLIMA", "91");
+            	abe.put("CHIAPAS", "22");
+            	abe.put("CHIHUAHUA", "100");
+            	abe.put("DISTRITO FEDERAL", "23");
+            	abe.put("DURANGO", "55");
+            	abe.put("GUANAJUATO", "85");
+            	abe.put("GUERRERO", "44");
+            	
+            	LineGraph graf = new LineGraph(abe);
+            	Intent i = graf.getIntent(getApplicationContext());
+            	startActivity(i);
+            	
+            	
             	
             	
             	
