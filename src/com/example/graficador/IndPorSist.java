@@ -47,6 +47,9 @@ public class IndPorSist extends Activity {
                 	
                 	
                 }
+                LineGraph graf = new LineGraph(datosGrafica);
+            	Intent i = graf.getIntent(getApplicationContext());
+            	startActivity(i);
                 
  
                 
@@ -86,13 +89,8 @@ public class IndPorSist extends Activity {
 //                // passing array index
 //                i.putExtra("id", position);
 //                startActivity(i);
-            	if(datosGrafica.isEmpty()){
-            		Toast.makeText(getApplicationContext(), "Imposible obtener datos", Toast.LENGTH_SHORT).show();
-            		return;
-            	}
-            	LineGraph graf = new LineGraph(datosGrafica);
-            	Intent i = graf.getIntent(getApplicationContext());
-            	startActivity(i);
+            	
+            	
             	
             }
         });
