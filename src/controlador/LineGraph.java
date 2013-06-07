@@ -17,19 +17,19 @@ import android.graphics.Color;
 public class LineGraph {
 	
 	private String xValues[];
-	private int yValues[];
+	private double yValues[];
 	
 	
 	public LineGraph(HashMap<String, String> info){
 		
 		int tam = info.size();
 		this.xValues = new String[tam];
-		this.yValues = new int[tam];
+		this.yValues = new double[tam];
 		int i = 0;
 		
 		for(String value : info.values())
 		{
-			this.yValues[i] = Integer.parseInt(value);
+			this.yValues[i] = Double.parseDouble(value);
 			i++;
 			
 		}
@@ -49,8 +49,8 @@ public class LineGraph {
 		int tam = this.xValues.length;
 		int long1 = tam/2;
 		int long2 = xValues.length - long1;
-		int yprimo[] = new int[long1];
-		int yprimo2[] = new int[long2];
+		double yprimo[] = new double[long1];
+		double yprimo2[] = new double[long2];
 		
 		for(int i = 0; i < long1; i++){
 			yprimo[i] = yValues[i];

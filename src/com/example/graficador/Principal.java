@@ -77,6 +77,7 @@ public class Principal extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent i = new Intent(getApplicationContext(), IndPorSist.class);
+				i.putExtra("origen", "urlNacioal");
 				startActivity(i);
 			}
 		});

@@ -56,7 +56,7 @@ public class Login extends Activity {
         btnLogin
         .requestFocus();
         //JSONObject jb = JSONManager.getJSONfromURL("http://200.23.107.50:8083/siiecon.asmx/lstSistemasPlantel");
-        new ReadJSON().execute("http://200.23.107.50:8083/siiecon.asmx/indicadorEstatal?IdIndicador=77");
+        //new ReadJSON().execute("http://200.23.107.50:8083/siiecon.asmx/indicadorEstatal?IdIndicador=77");
         
         
         btnLogin.setOnClickListener(new View.OnClickListener() {

@@ -1,23 +1,79 @@
 package com.example.graficador;
 
+import java.util.HashMap;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import controlador.JsonCont;
+import controlador.LineGraph;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 public class IndPorSist extends Activity {
+	 HashMap<String, String> datosGrafica = new HashMap<String, String>();
+	private class ReadJSON extends AsyncTask
+    <String, Void, String> {
+        protected String doInBackground(String... urls) {
+            return new JsonCont().readJSONFeed(urls[0]);
+        }
 
+        protected void onPostExecute(String result) {
+            try {
+            	Toast.makeText(getBaseContext(), "En Línea", 
+                        Toast.LENGTH_LONG).show();
+            	
+            	
+            	
+            	
+            	
+            	
+                JSONArray array = new JSONArray(result);
+                
+                for(int i=0;i<array.length(); i++){
+                	
+                	JSONObject b = array.getJSONObject(i);
+                	datosGrafica.put(b.getString("EntFed_Dsc"), b.getString("Valor"));
+                	
+                	
+                }
+                
+ 
+                
+            } catch (Exception e) {
+            	
+                Log.d("ReadWeatherJSONFeedTask", e.getLocalizedMessage());
+                Toast.makeText(getBaseContext(), "Imposible Conectar a la Red",Toast.LENGTH_LONG).show();
+            }          
+        }
+    }
+
+	HashMap<String, String> urls = new HashMap<String, String>();
+	String url;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_indicadores);
 		
+		urls.put("urlNacioal", "http://200.23.107.50:8083/siiecon.asmx/indicadorEstatal?IdIndicador=77");
+		
 		GridView gv = (GridView) findViewById(R.id.grid_view);
 		
+		Bundle bundle = getIntent().getExtras();
+		String origen = bundle.getString("origen");
+		
+		url = urls.get(origen);
+		//de donde vino
 		gv.setAdapter(new MyAdapter(this));
 		gv.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -25,10 +81,19 @@ public class IndPorSist extends Activity {
                     int position, long id) {
  
                 // Sending image id to FullScreenActivity
-                Intent i = new Intent(getApplicationContext(), Grafica.class);
-                // passing array index
-                i.putExtra("id", position);
-                startActivity(i);
+            	new ReadJSON().execute(url);
+//                Intent i = new Intent(getApplicationContext(), Grafica.class);
+//                // passing array index
+//                i.putExtra("id", position);
+//                startActivity(i);
+            	if(datosGrafica.isEmpty()){
+            		Toast.makeText(getApplicationContext(), "Imposible obtener datos", Toast.LENGTH_SHORT).show();
+            		return;
+            	}
+            	LineGraph graf = new LineGraph(datosGrafica);
+            	Intent i = graf.getIntent(getApplicationContext());
+            	startActivity(i);
+            	
             }
         });
 		
