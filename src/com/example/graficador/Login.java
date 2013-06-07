@@ -23,8 +23,8 @@ public class Login extends Activity {
  
         protected void onPostExecute(String result) {
             try {
-            	Toast.makeText(getBaseContext(), "listo", 
-                        Toast.LENGTH_SHORT).show();
+            	Toast.makeText(getBaseContext(), "En Línea", 
+                        Toast.LENGTH_LONG).show();
             	
             	
             	
@@ -36,7 +36,9 @@ public class Login extends Activity {
  
                 
             } catch (Exception e) {
+            	
                 Log.d("ReadWeatherJSONFeedTask", e.getLocalizedMessage());
+                Toast.makeText(getBaseContext(), "Imposible Conectar a la Red",Toast.LENGTH_LONG).show();
             }          
         }
     }
@@ -54,7 +56,7 @@ public class Login extends Activity {
         btnLogin
         .requestFocus();
         //JSONObject jb = JSONManager.getJSONfromURL("http://200.23.107.50:8083/siiecon.asmx/lstSistemasPlantel");
-        new ReadJSON().execute("siiecon.asmx/indicadorEstatal?IdIndicador=77");
+        new ReadJSON().execute("http://200.23.107.50:8083/siiecon.asmx/indicadorEstatal?IdIndicador=77");
         
         
         btnLogin.setOnClickListener(new View.OnClickListener() {
