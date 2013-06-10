@@ -105,6 +105,7 @@ public class IndPorSist extends Activity {
             	
             	LineGraph graf = new LineGraph(abe);
             	Intent i = graf.getIntent(getApplicationContext());
+            	i = new Intent(getApplicationContext(), GraficaTemp.class);
             	startActivity(i);
             	
             	

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<!--[if lt IE 9]><script language="javascript" type="text/javascript" src="excanvas.js"></script><![endif]-->
+		
+		<script class="include" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script language="javascript" type="text/javascript" src="jquery.min.js"></script>
+		<script language="javascript" type="text/javascript" src="jquery.jqplot.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="jquery.jqplot.css" />
+	<script type="text/javascript">
+		$(document).ready(function(){
+  var line1 = [['Aguascalientes', 7], ['Baja california', 9], ['Veracruz', 15], 
+  ['Distrito federal', 12], [' Campeche', 3], 
+  ['Oaxaca', 6], ['Tamaulipas', 20], ['Sonora', 17]];
+ 
+  	var plot1 = $.jqplot('chart1', [line1], {
+    title: 'Nacional',
+    series:[{renderer:$.jqplot.BarRenderer}],
+    axesDefaults: {
+        tickRenderer: $.jqplot.CanvasAxisTickRenderer ,
+        tickOptions: {
+          angle: -30,
+          fontSize: '10pt'
+        }
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer
+      }
+  	  }
+  });
+	});
+	</script>
+	<script type="text/javascript" src="plugins/jqplot.dateAxisRenderer.min.js"></script>
+		<script type="text/javascript" src="plugins/jqplot.canvasTextRenderer.min.js"></script>
+		<script type="text/javascript" src="plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
+		<script type="text/javascript" src="plugins/jqplot.categoryAxisRenderer.min.js"></script>
+		<script type="text/javascript" src="plugins/jqplot.barRenderer.min.js"></script>
+	</head>
+	<body>
+		<center>
+			<div id="chart1" style="height:300px;width:480px; "></div>
+		</center>
+	</body>
+</html>
