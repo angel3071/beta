@@ -20,6 +20,7 @@ import controlador.JsonCont;
 
 public class Principal extends Activity {
 	ProgressDialog progresBar;
+	public int estado;
 	private class LeerJSON extends AsyncTask
     <String, Void, String> {
         private int id;
@@ -97,7 +98,7 @@ public class Principal extends Activity {
 	        
 	        	Intent i = new Intent(getApplicationContext(), IndPorSist.class);
 	        	i.putExtra("Origen", "Estatal");
-	        	i.putExtra("Estado", item);
+	        	i.putExtra("Estado", item +1);
 	        	i.putExtra("Plantel", -1);
 	        	startActivity(i);
 	        
@@ -119,6 +120,7 @@ public class Principal extends Activity {
 	        public void onClick(DialogInterface dialog, int item) {
 //	            Dialog d = crearDialogoSeleccionPlantelEstado(item);
 //	            d.show();
+	        	estado = item +1;
 	        	new LeerJSON(3).execute("http://200.23.107.50:8083/siiecon.asmx/indicadorPlantel?pIdEntidad="+ (item + 1) +"&IdIndicador=77");
 	        }
 	    });
@@ -136,8 +138,8 @@ public class Principal extends Activity {
 				// TODO Auto-generated method stub
 				Intent i = new Intent(getApplicationContext(), IndPorSist.class);
 				i.putExtra("Origen", "Plantel");
-	        	i.putExtra("Estado", which);
-	        	i.putExtra("Plantel", which);
+	        	i.putExtra("Estado", estado);
+	        	i.putExtra("Plantel", which + 1);
 	        	startActivity(i);
 			}
 		}) ;

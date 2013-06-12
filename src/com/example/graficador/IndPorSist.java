@@ -30,6 +30,8 @@ public class IndPorSist extends Activity {
 	 HashMap<String, String> datosGrafica = new HashMap<String, String>();
      ProgressDialog progresBar;
 	public String origen;
+	public double estado;
+	public double plantel;
 	public static class Item{
 	    public final String text;
 	    public final int icon;
@@ -79,7 +81,7 @@ public class IndPorSist extends Activity {
                 for(int i=0;i<array.length(); i++){
                 	
                 	JSONObject b = array.getJSONObject(i);
-                	semaforos[i] = b.getString("Descripcion");
+                	semaforos[i] = b.getString("Descripcion") + "%" + b.getString("Valor");
 
                 	
                 	
@@ -93,6 +95,7 @@ public class IndPorSist extends Activity {
             	
                 Log.d("ReadWeatherJSONFeedTask", e.getLocalizedMessage());
                 Toast.makeText(getBaseContext(), "Imposible Conectar a la Red",Toast.LENGTH_LONG).show();
+                progresBar.dismiss();
             }          
         }
     }
@@ -101,8 +104,17 @@ public class IndPorSist extends Activity {
 	    final Item[] items = new Item[semaforos.length];
 
 		for(int i=0; i<semaforos.length; i++){
-			
-			items[i] = new Item(semaforos[i], R.drawable.semav);
+			Double valor = Double.parseDouble(semaforos[i].split("%")[1]);
+			if( valor < 51.00)
+				items[i] = new Item(semaforos[i].split("%")[0], R.drawable.semar);
+			else if(valor>=51.00 && valor<=75.00)
+				items[i] = new Item(semaforos[i].split("%")[0], R.drawable.semaa);
+			else if(valor> 75.00)
+				items[i] = new Item(semaforos[i].split("%")[0], R.drawable.semav);
+			else
+				items[i] = new Item(semaforos[i].split("%")[0], 0);
+
+
 		}
 	    
 	    ListAdapter adapter = new ArrayAdapter<Item>(
@@ -132,6 +144,9 @@ public class IndPorSist extends Activity {
 	    builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
 	        public void onClick(DialogInterface dialog, int item) {
 	        	Intent i = new Intent(getApplicationContext(), GraficaTemp.class);
+	        	i.putExtra("Origen", origen);
+	        	i.putExtra("Estado", estado);
+	        	i.putExtra("Plantel", plantel);
 	        	i.putExtra("Semaforo", item + 1);
 	        	startActivity(i);	        
 	        	}
@@ -160,6 +175,8 @@ public class IndPorSist extends Activity {
 		
 		Bundle bundle = getIntent().getExtras();
 		this.origen = bundle.getString("Origen");
+		this.estado = bundle.getInt("Estado");
+		this.plantel = bundle.getInt("Plantel");
 		
 		gv.setAdapter(new MyAdapter(this));
 		gv.setOnItemClickListener(new OnItemClickListener() {
@@ -177,9 +194,9 @@ public class IndPorSist extends Activity {
 				if(origen.equals("Nacional")){
 					new ReadJSON(position).execute("http://200.23.107.50:8083/siiecon.asmx/NacionalIndicadores?pIdSistema=" + (position + 1));
 				}else if(origen.equals("Estatal")){
-					new ReadJSON(position).execute("http://200.23.107.50:8083/siiecon.asmx/indicadorPlantel?pIdEntidad=string&IdIndicador=string");
+					new ReadJSON(position).execute("http://200.23.107.50:8083/siiecon.asmx/EstatalIndicadores?pIdSistema=" + (position + 1) );
 				}else{
-					new ReadJSON(position).execute("http://200.23.107.50:8083/");
+					new ReadJSON(position).execute("http://200.23.107.50:8083/siiecon.asmx/PlantelIndicadores?pIdSistema=" + (position + 1) );
 					
 				}
 				
