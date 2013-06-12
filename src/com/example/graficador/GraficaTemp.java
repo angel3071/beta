@@ -5,9 +5,15 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
+
 import android.webkit.WebView;
 import android.widget.Toast;
 import controlador.JsonCont;
@@ -118,4 +124,21 @@ public class GraficaTemp extends Activity {
 		
         
       }
+	
+		@Override
+		public boolean onKeyDown(int keyCode, KeyEvent event) {
+			// TODO Auto-generated method stub
+			switch (keyCode) {
+			case KeyEvent.KEYCODE_MENU:
+					
+						Intent i = new Intent(getApplicationContext(), IndPorSist.class);
+						startActivity(i);
+					
+				break;
+
+			default:
+				break;
+			}
+			return super.onKeyDown(keyCode, event);
+		}
 	}
