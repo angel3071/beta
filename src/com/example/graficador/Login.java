@@ -52,22 +52,31 @@ public class Login extends Activity {
 //        EditText usuario = (EditText) findViewById(R.id.usuario);
 //        usuario.clearFocus();
         
-        Button btnLogin = (Button) findViewById(R.id.btnLogin);
-        btnLogin
-        .requestFocus();
-        //JSONObject jb = JSONManager.getJSONfromURL("http://200.23.107.50:8083/siiecon.asmx/lstSistemasPlantel");
-        //new ReadJSON().execute("http://200.23.107.50:8083/siiecon.asmx/indicadorEstatal?IdIndicador=77");
-        
-        
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+//        Button btnLogin = (Button) findViewById(R.id.btnLogin);
+        Button b = (Button)findViewById(R.id.btnLogin);
+        b.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent i = new Intent(getApplicationContext(), Principal.class);
 				startActivity(i);
+				
 			}
 		});
+//       
+//        //JSONObject jb = JSONManager.getJSONfromURL("http://200.23.107.50:8083/siiecon.asmx/lstSistemasPlantel");
+//        //new ReadJSON().execute("http://200.23.107.50:8083/siiecon.asmx/indicadorEstatal?IdIndicador=77");
+//        
+//        
+//        btnLogin.setOnClickListener(new View.OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				Intent i = new Intent(getApplicationContext(), Principal.class);
+//				startActivity(i);
+//			}
+//		});
     }
 
 
