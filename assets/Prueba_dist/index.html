@@ -8,7 +8,8 @@
 		<script language="javascript" type="text/javascript" src="jquery.jqplot.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="jquery.jqplot.css" />
 	<script type="text/javascript">
-		function grafica(paramString){
+		function grafica(paramString, titleParam){
+
 
 					//var cadenaOri = "Veracruz, 45 - Campeche, 56 - Distrito Federal, 60 - Tamaulipas, 80";
 					var cadenaOri = paramString;
@@ -29,7 +30,7 @@
     				//var line1 = [['Veracruz', 45],['Tamaulipas', 76],['Campeche', 80],['Distrito federal',30],['Oaxaca', 55]]
  					var colorOptions = ['#F01515', '#F0DE15', '#15D629'] //[Rojo, Amarillo, Verde]
  					var colorValues = []
- 					var titleGraph = 'Nacional'
+ 					var titleGraph = titleParam
 
  		
  					for(var i in line1){
@@ -54,6 +55,14 @@
                 		// Set varyBarColor to tru to use the custom colors on the bars.
                 		varyBarColor: true
             			}
+        			},
+        			axesDefaults:{
+
+        				 tickRenderer: $.jqplot.CanvasAxisTickRenderer ,
+        				 tickOptions: {
+          						angle: -90,
+          						fontSize: '10pt'
+        			}
         			},
         			axes:{
             			xaxis:{
