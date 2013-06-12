@@ -96,7 +96,7 @@ public class IndPorSist extends Activity {
             } catch (Exception e) {
             	
                 Log.d("ReadWeatherJSONFeedTask", e.getLocalizedMessage());
-                Toast.makeText(getBaseContext(), "Imposible Conectar a la Red",Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "No se pudo descargar la información",Toast.LENGTH_LONG).show();
                 progresBar.dismiss();
             }          
         }
