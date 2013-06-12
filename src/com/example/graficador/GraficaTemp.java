@@ -12,22 +12,27 @@ public class GraficaTemp extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_grafica_temp);
-		//this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-		mWebView = (WebView) findViewById(R.id.webview);
+		
+		mWebView = (WebView) findViewById(R.id.mybrowser);
         
         // Activo JavaScript
         mWebView.getSettings().setJavaScriptEnabled(true);
         
+        final MyJavaScriptInterface myJavaScriptInterface = new MyJavaScriptInterface(this);
+        
         // Cargamos la url que necesitamos    
         mWebView.loadUrl("file:///android_asset/Prueba_dist/index.html");
-		
-	}
+        Button btnSendMsg;
+        
+        btnSendMsg = (Button)findViewById(R.id.sendmsg);
+        btnSendMsg.setOnClickListener(new Button.OnClickListener(){
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.grafica_temp, menu);
-		return true;
-	}
+       @Override
+       public void onClick(View arg0) {
+        // TODO Auto-generated method stub
+        String msgToSend = "Veracruz, 45 - Campeche, 56 - Distrito Federal, 60 - Tamaulipas, 80";
+        mWebView.loadUrl("javascript:grafica(\""+msgToSend+"\")");
+        
+       }});
 
 }
