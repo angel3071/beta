@@ -130,10 +130,10 @@ public class GraficaTemp extends Activity {
 			// TODO Auto-generated method stub
 			switch (keyCode) {
 			case KeyEvent.KEYCODE_MENU:
-					if(origen.equals("Nacional")){
+					
 						Intent i = new Intent(getApplicationContext(), IndPorSist.class);
 						startActivity(i);
-					}
+					
 				break;
 
 			default:
