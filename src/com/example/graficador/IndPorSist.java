@@ -30,8 +30,8 @@ public class IndPorSist extends Activity {
 	 HashMap<String, String> datosGrafica = new HashMap<String, String>();
      ProgressDialog progresBar;
 	public String origen;
-	public double estado;
-	public double plantel;
+	public int estado;
+	public int plantel;
 	public static class Item{
 	    public final String text;
 	    public final int icon;

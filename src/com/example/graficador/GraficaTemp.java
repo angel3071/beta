@@ -8,11 +8,19 @@ import android.widget.Button;
 
 public class GraficaTemp extends Activity {
 	private WebView mWebView;
+	public String origen;
+	public int estado;
+	public int plantel;
+	public int semaforo;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_grafica_temp);
-		
+		Bundle bundle = getIntent().getExtras();
+		this.origen = bundle.getString("Origen");
+		this.estado = bundle.getInt("Estado");
+		this.plantel = bundle.getInt("Plantel");
+		this.semaforo = bundle.getInt("Semaforo");
 		mWebView = (WebView) findViewById(R.id.mybrowser);
         
         // Activo JavaScript
