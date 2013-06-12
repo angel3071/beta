@@ -3,34 +3,21 @@ package com.example.graficador;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.example.graficador.IndPorSist.Item;
-
-
-import controlador.JsonCont;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
+import controlador.JsonCont;
 
 public class GraficaTemp extends Activity {
 	private WebView mWebView;
 	public String origen;
 	public int estado;
 	public int plantel;
-	public int semaforo;
+	public double semaforo;
 	ProgressDialog progresBar;
 	
 	
@@ -111,7 +98,7 @@ public class GraficaTemp extends Activity {
 		this.origen = bundle.getString("Origen");
 		this.estado = bundle.getInt("Estado");
 		this.plantel = bundle.getInt("Plantel");
-		this.semaforo = bundle.getInt("Semaforo");
+		this.semaforo = bundle.getDouble("Semaforo");
 		mWebView = (WebView) findViewById(R.id.mybrowser);
         
         // Activo JavaScript
