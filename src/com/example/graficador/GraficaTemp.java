@@ -109,7 +109,6 @@ public class GraficaTemp extends Activity {
 		setContentView(R.layout.activity_grafica_temp);
 		Bundle bundle = getIntent().getExtras();
 		this.origen = bundle.getString("Origen");
-		this.origen = "Estatal";
 		this.estado = bundle.getInt("Estado");
 		this.plantel = bundle.getInt("Plantel");
 		this.semaforo = bundle.getInt("Semaforo");
@@ -120,12 +119,13 @@ public class GraficaTemp extends Activity {
         // Cargamos la url que necesitamos    
         mWebView.loadUrl("file:///android_asset/Prueba_dist/index.html");
         
+       
         
         progresBar = new ProgressDialog(this);
         if(origen.equals("Nacional")){
-        	new ReadJSON("Nacional", "EntFed_Dsc").execute("http://200.23.107.50:8083/siiecon.asmx/indicadorEstatal?IdIndicador=77");
+        	new ReadJSON("Nacional", "EntFed_Dsc").execute("http://200.23.107.50:8083/siiecon.asmx/indicadorEstatal?IdIndicador="+semaforo);
         }else if(origen.equals("Estatal")){
-        	new ReadJSON("Estatal", "NombrePlantel").execute("http://200.23.107.50:8083/siiecon.asmx/indicadorPlantel?pIdEntidad=1&IdIndicador=77");
+        	new ReadJSON("Estatal", "NombrePlantel").execute("http://200.23.107.50:8083/siiecon.asmx/indicadorPlantel?pIdEntidad="+estado+"&IdIndicador="+semaforo);
         }
 		
 		
