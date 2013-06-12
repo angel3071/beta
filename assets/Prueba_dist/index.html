@@ -8,28 +8,60 @@
 		<script language="javascript" type="text/javascript" src="jquery.jqplot.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="jquery.jqplot.css" />
 	<script type="text/javascript">
-		$(document).ready(function(){
-  var line1 = [['Aguascalientes', 7], ['Baja california', 9], ['Veracruz', 15], 
-  ['Distrito federal', 12], [' Campeche', 3], 
-  ['Oaxaca', 6], ['Tamaulipas', 20], ['Sonora', 17]];
+		function grafica(paramString){
+
+					//var cadenaOri = "Veracruz, 45 - Campeche, 56 - Distrito Federal, 60 - Tamaulipas, 80";
+					var cadenaOri = paramString;
+					var aSplit = cadenaOri.split("-");
+					var line1 = []
+
+					for(var i in aSplit){
+
+						var tempArray = aSplit[i].split(",");
+						
+						for (var j in tempArray){
+
+							line1.push(new Array(tempArray[0], parseInt(tempArray[1])));
+
+						}
+					}
+
+    				//var line1 = [['Veracruz', 45],['Tamaulipas', 76],['Campeche', 80],['Distrito federal',30],['Oaxaca', 55]]
+ 					var colorOptions = ['#F01515', '#F0DE15', '#15D629'] //[Rojo, Amarillo, Verde]
+ 					var colorValues = []
+ 					var titleGraph = 'Nacional'
+
+ 		
+ 					for(var i in line1){
+
+ 						if(line1[i][1] < 50){
+ 							colorValues.push(colorOptions[0])
+ 						}else if (line1[i][1] >= 50 && line1[i][1] < 75 ){
+ 							colorValues.push(colorOptions[1])
+ 						}else if(line1[i][1] >= 75){
+							colorValues.push(colorOptions[2])
+ 						}
+ 					}
+
  
-  	var plot1 = $.jqplot('chart1', [line1], {
-    title: 'Nacional',
-    series:[{renderer:$.jqplot.BarRenderer}],
-    axesDefaults: {
-        tickRenderer: $.jqplot.CanvasAxisTickRenderer ,
-        tickOptions: {
-          angle: -30,
-          fontSize: '10pt'
-        }
-    },
-    axes: {
-      xaxis: {
-        renderer: $.jqplot.CategoryAxisRenderer
-      }
-  	  }
-  });
-	});
+    				$('#chart1').jqplot([line1], {
+        				title: titleGraph,
+        				// Provide a custom seriesColors array to override the default colors.
+        				seriesColors: colorValues,
+        				seriesDefaults:{
+            			renderer:$.jqplot.BarRenderer,
+            			rendererOptions: {
+                		// Set varyBarColor to tru to use the custom colors on the bars.
+                		varyBarColor: true
+            			}
+        			},
+        			axes:{
+            			xaxis:{
+                			renderer: $.jqplot.CategoryAxisRenderer
+            			}
+        			}
+    			});
+			}
 	</script>
 	<script type="text/javascript" src="plugins/jqplot.dateAxisRenderer.min.js"></script>
 		<script type="text/javascript" src="plugins/jqplot.canvasTextRenderer.min.js"></script>
