@@ -29,6 +29,7 @@ import controlador.JsonCont;
 public class IndPorSist extends Activity {
 	 HashMap<String, String> datosGrafica = new HashMap<String, String>();
      ProgressDialog progresBar;
+     String[] semaforos1;
 	public String origen;
 	public int estado;
 	public int plantel;
@@ -77,24 +78,25 @@ public class IndPorSist extends Activity {
             	
                 JSONArray array = new JSONArray(result);
                 String[] semaforos = new String[array.length()];
-
+                semaforos1 = new String[array.length()];
                 for(int i=0;i<array.length(); i++){
                 	
                 	JSONObject b = array.getJSONObject(i);
                 	semaforos[i] = b.getString("Descripcion") + "%" + b.getString("Valor");
-
+                	semaforos1[i] = b.getString("IdIndicador");
+                	
                 	
                 	
                 }
                 progresBar.dismiss();
-                
+//                semaforos1 = semaforos;
                 Dialog d = crearDialogoSemaforos(semaforos);
                 d.show();
                 
             } catch (Exception e) {
             	
                 Log.d("ReadWeatherJSONFeedTask", e.getLocalizedMessage());
-                Toast.makeText(getBaseContext(), "Imposible Conectar a la Red",Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "No se pudo descargar la información",Toast.LENGTH_LONG).show();
                 progresBar.dismiss();
             }          
         }
@@ -147,7 +149,7 @@ public class IndPorSist extends Activity {
 	        	i.putExtra("Origen", origen);
 	        	i.putExtra("Estado", estado);
 	        	i.putExtra("Plantel", plantel);
-	        	i.putExtra("Semaforo", item + 1);
+	        	i.putExtra("Semaforo", Double.parseDouble(semaforos1[item]));
 	        	startActivity(i);	        
 	        	}
 	    });
