@@ -5,20 +5,19 @@ import java.util.HashMap;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import controlador.JsonCont;
-import controlador.LineGraph;
-
-import android.os.AsyncTask;
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.Toast;
+import controlador.JsonCont;
+import controlador.LineGraph;
 
 public class IndPorSist extends Activity {
 	 HashMap<String, String> datosGrafica = new HashMap<String, String>();
@@ -73,7 +72,7 @@ public class IndPorSist extends Activity {
 		GridView gv = (GridView) findViewById(R.id.grid_view);
 		
 		Bundle bundle = getIntent().getExtras();
-		String origen = bundle.getString("origen");
+		String origen = bundle.getString("Origen");
 		
 		url = urls.get(origen);
 		//de donde vino
