@@ -42,24 +42,24 @@
 		  android:layout_below="@id/header">
 		  <!--  Email Label -->
 		  <TextView 
-		      android:id="@+id/user"
 		      android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
 		  		android:textColor="#372c24"
 		  		android:text="Usuario"/>
 		  <EditText android:layout_width="fill_parent"
+		      android:id="@+id/user"
 		  		android:layout_height="wrap_content"
 		  		android:layout_marginTop="5dip"
 		  		android:layout_marginBottom="20dip"
 		  		android:singleLine="true"/>
 		  <!--  Password Label -->
 		  <TextView 
-		      android:id="@+id/password"
 		      android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
 		  		android:textColor="#372c24"
 		  		android:text="Contraseña"/>
 		  <EditText android:layout_width="fill_parent"
+		      android:id="@+id/password"
 		  		android:layout_height="wrap_content"
 		  		android:layout_marginTop="5dip"
 		  		android:singleLine="true"

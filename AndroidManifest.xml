@@ -58,7 +58,8 @@
         <activity
             android:name="com.example.graficador.GraficaTemp"
             android:screenOrientation="landscape"
-            android:label="@string/title_activity_grafica_temp" >
+            android:label="@string/title_activity_grafica_temp" 
+            >
         </activity>
         
       

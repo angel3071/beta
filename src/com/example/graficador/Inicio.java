@@ -46,8 +46,8 @@ public class Inicio extends Activity {
     }
 
 
-	private TextView password;
-	private TextView usuario;
+	public TextView password;
+	public TextView usuario;
 	
 	
     @Override
@@ -75,22 +75,30 @@ public class Inicio extends Activity {
 					{
 						DBUserAdapter dbUser = new DBUserAdapter(getApplicationContext());
 						dbUser.open();
-						
+						for(int i=1;i<33;i++){
+							if(i<10)
+								dbUser.AddUser("SEO0" + i, "seo0" + i);
+							else
+								dbUser.AddUser("SEO" + i, "seo" + i);
+
+						}
 						if(dbUser.Login(username, pass))
 						{
-							Toast.makeText(getApplicationContext(),"Successfully Logged In", Toast.LENGTH_LONG).show();
+							Toast.makeText(getApplicationContext(),"Bienvenido", Toast.LENGTH_LONG).show();
+							Intent i = new Intent(getApplicationContext(), Principal.class);
+							startActivity(i);
 						}else{
-							Toast.makeText(getApplicationContext(),"Invalid Username/Password", Toast.LENGTH_LONG).show();
+							Toast.makeText(getApplicationContext(),"Usuario o Contraseña Inválidos", Toast.LENGTH_LONG).show();
 						}
 						dbUser.close();
-					}else{return;}
+					}else{Toast.makeText(getApplicationContext(),"Usuario o Contraseña Inválidos", Toast.LENGTH_LONG).show();
+					return;}
 					
 				}catch(Exception e)
 				{
 					Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_LONG).show();
 				}
-				Intent i = new Intent(getApplicationContext(), Principal.class);
-				startActivity(i);
+				
 				
 			}
 		});

@@ -24,6 +24,11 @@ public class MyAdapter extends BaseAdapter {
         items.add(new Item("PROBEEMS",      R.drawable.med3));
         items.add(new Item("SIGEEMS",     R.drawable.med1));
         items.add(new Item("SIAT",      R.drawable.med3));
+        items.add(new Item("NOMINA",      R.drawable.med3));
+        items.add(new Item("Coordinación Admnistrativa",      R.drawable.med1));
+        items.add(new Item("SO",      R.drawable.med1));
+
+        
     }
 
     @Override
