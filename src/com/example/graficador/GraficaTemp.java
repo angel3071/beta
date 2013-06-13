@@ -5,15 +5,10 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-
 import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewGroup;
-
 import android.webkit.WebView;
 import android.widget.Toast;
 import controlador.JsonCont;
@@ -119,7 +114,6 @@ public class GraficaTemp extends Activity {
         
       }
 	
-<<<<<<< HEAD
 		@Override
 		public boolean onKeyDown(int keyCode, KeyEvent event) {
 			// TODO Auto-generated method stub
@@ -130,7 +124,6 @@ public class GraficaTemp extends Activity {
 			return super.onKeyDown(keyCode, event);
 			}
 		}
-=======
 //		@Override
 //		public boolean onKeyDown(int keyCode, KeyEvent event) {
 //			// TODO Auto-generated method stub
@@ -147,5 +140,4 @@ public class GraficaTemp extends Activity {
 //			}
 //			return super.onKeyDown(keyCode, event);
 //		}
->>>>>>> 1f4704c96bb66317a334e740c49bf2511f0354b2
 	}
