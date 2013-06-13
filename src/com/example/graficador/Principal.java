@@ -189,9 +189,10 @@ public class Principal extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				progresBar = new ProgressDialog(v.getContext());
-				new LeerJSON(2).execute("http://200.23.107.50:8083/siiecon.asmx/indicadorEstatal?IdIndicador=1");
-				
+//				progresBar = new ProgressDialog(v.getContext());
+//				new LeerJSON(2).execute("http://200.23.107.50:8083/siiecon.asmx/indicadorEstatal?IdIndicador=1");
+//				
+				Toast.makeText(getApplicationContext(), "No disponible por el momento", Toast.LENGTH_LONG).show();
 				//d.setContentView(R.layout.estados_layout);
 				
 				

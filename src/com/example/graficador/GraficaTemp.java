@@ -119,6 +119,7 @@ public class GraficaTemp extends Activity {
         
       }
 	
+<<<<<<< HEAD
 		@Override
 		public boolean onKeyDown(int keyCode, KeyEvent event) {
 			// TODO Auto-generated method stub
@@ -129,4 +130,22 @@ public class GraficaTemp extends Activity {
 			return super.onKeyDown(keyCode, event);
 			}
 		}
+=======
+//		@Override
+//		public boolean onKeyDown(int keyCode, KeyEvent event) {
+//			// TODO Auto-generated method stub
+//			switch (keyCode) {
+//			case KeyEvent.KEYCODE_MENU:
+//					
+//						Intent i = new Intent(getApplicationContext(), IndPorSist.class);
+//						startActivity(i);
+//					
+//				break;
+//
+//			default:
+//				break;
+//			}
+//			return super.onKeyDown(keyCode, event);
+//		}
+>>>>>>> 1f4704c96bb66317a334e740c49bf2511f0354b2
 	}

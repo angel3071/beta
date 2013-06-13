@@ -186,8 +186,8 @@ public class IndPorSist extends Activity {
 			@Override
             public void onItemClick(AdapterView<?> parent, View v,
                     int position, long id) {
-				if(position == 2 || position==3||position==4||position==5){ 
-	                Toast.makeText(getBaseContext(), "Aún no Implementado",Toast.LENGTH_LONG).show();
+				if(position == 2 || position==3||position==4||position==5||position==6||position==7||position==8){ 
+	                Toast.makeText(getBaseContext(), "Resultados no disponibles",Toast.LENGTH_LONG).show();
 
 					return; }
 				

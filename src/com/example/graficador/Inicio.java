@@ -10,10 +10,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+import controlador.DBUserAdapter;
 import controlador.JsonCont;
 
-public class Login extends Activity {
+public class Inicio extends Activity {
 
 	private class ReadJSON extends AsyncTask
     <String, Void, String> {
@@ -42,6 +44,10 @@ public class Login extends Activity {
             }          
         }
     }
+
+
+	public TextView password;
+	public TextView usuario;
 	
 	
     @Override
@@ -54,12 +60,45 @@ public class Login extends Activity {
         
 //        Button btnLogin = (Button) findViewById(R.id.btnLogin);
         Button b = (Button)findViewById(R.id.btnLogin);
+        this.usuario = (TextView)findViewById(R.id.user);
+		this.password = (TextView)findViewById(R.id.password);
         b.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), Principal.class);
-				startActivity(i);
+				
+
+				String username = usuario.getText().toString();
+				String pass = password.getText().toString();
+				try{
+					if(username.length() > 0 && pass.length() >0)
+					{
+						DBUserAdapter dbUser = new DBUserAdapter(getApplicationContext());
+						dbUser.open();
+						for(int i=1;i<33;i++){
+							if(i<10)
+								dbUser.AddUser("SEO0" + i, "seo0" + i);
+							else
+								dbUser.AddUser("SEO" + i, "seo" + i);
+
+						}
+						if(dbUser.Login(username, pass))
+						{
+							Toast.makeText(getApplicationContext(),"Bienvenido", Toast.LENGTH_LONG).show();
+							Intent i = new Intent(getApplicationContext(), Principal.class);
+							startActivity(i);
+						}else{
+							Toast.makeText(getApplicationContext(),"Usuario o Contraseña Inválidos", Toast.LENGTH_LONG).show();
+						}
+						dbUser.close();
+					}else{Toast.makeText(getApplicationContext(),"Usuario o Contraseña Inválidos", Toast.LENGTH_LONG).show();
+					return;}
+					
+				}catch(Exception e)
+				{
+					Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_LONG).show();
+				}
+				
 				
 			}
 		});
