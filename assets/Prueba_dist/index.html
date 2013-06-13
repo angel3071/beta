@@ -10,9 +10,6 @@
 	<script type="text/javascript">
 		function grafica(paramString, titleParam){
 
-					 document.getElementById("gif").style.display="block";
-    				 setTimeout("hide()", 5000);  // 5 seconds
-					//var cadenaOri = "Veracruz, 45 - Campeche, 56 - Distrito Federal, 60 - Tamaulipas, 80";
 					var cadenaOri = paramString;
 					var aSplit = cadenaOri.split("-");
 					var line1 = []
@@ -45,7 +42,7 @@
  						}
  					}
 
- 
+ 					
     				$('#chart1').jqplot([line1], {
         				title: titleGraph,
         				// Provide a custom seriesColors array to override the default colors.
@@ -82,9 +79,7 @@
 	<body>
 		<center>
 			<div id="chart1" style="height:300px;width:480px; "></div>
-			<div id="gif">
-				<img src="ajax-loader.gif">
-			</div>
+			
 		</center>
 	</body>
 </html>
