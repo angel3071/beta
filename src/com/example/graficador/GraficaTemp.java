@@ -67,7 +67,7 @@ public class GraficaTemp extends Activity {
                 		cadena = cadena +"-"+ entidad + "," + valor;
                 }
                 progresBar.dismiss();
-                Toast.makeText(getApplicationContext(), "La gr‡fica aparecer‡ dentro de poco", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "La grï¿½fica aparecerï¿½ dentro de poco", Toast.LENGTH_LONG).show();
                 mWebView.loadUrl("javascript:grafica(\""+cadena+","+this.title+"\")");
                 
                 
@@ -113,10 +113,7 @@ public class GraficaTemp extends Activity {
         
       }
 	
-<<<<<<< HEAD
-=======
 
->>>>>>> eca9143f2322aba927bc02be737dca8e80be4ff2
 		@Override
 		public boolean onKeyDown(int keyCode, KeyEvent event) {
 			// TODO Auto-generated method stub
@@ -127,10 +124,7 @@ public class GraficaTemp extends Activity {
 			return super.onKeyDown(keyCode, event);
 			}
 		}
-<<<<<<< HEAD
-=======
 
->>>>>>> eca9143f2322aba927bc02be737dca8e80be4ff2
 //		@Override
 //		public boolean onKeyDown(int keyCode, KeyEvent event) {
 //			// TODO Auto-generated method stub
@@ -147,8 +141,4 @@ public class GraficaTemp extends Activity {
 //			}
 //			return super.onKeyDown(keyCode, event);
 //		}
-<<<<<<< HEAD
-=======
-
->>>>>>> eca9143f2322aba927bc02be737dca8e80be4ff2
-	}
+}
