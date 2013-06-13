@@ -55,13 +55,7 @@ public class GraficaTemp extends Activity {
         protected void onPostExecute(String result) {
             try {
      
-            	
-            	
-            	
-            	
-            	
-            	
-                JSONArray array = new JSONArray(result);
+            	JSONArray array = new JSONArray(result);
                 String cadena = "";
 
                 for(int i=0;i<array.length(); i++){
@@ -128,17 +122,11 @@ public class GraficaTemp extends Activity {
 		@Override
 		public boolean onKeyDown(int keyCode, KeyEvent event) {
 			// TODO Auto-generated method stub
-			switch (keyCode) {
-			case KeyEvent.KEYCODE_MENU:
-					
-						Intent i = new Intent(getApplicationContext(), IndPorSist.class);
-						startActivity(i);
-					
-				break;
-
-			default:
-				break;
-			}
+			if (keyCode == KeyEvent.KEYCODE_MENU){
+				
+				return true;
+			}else{
 			return super.onKeyDown(keyCode, event);
+			}
 		}
 	}
