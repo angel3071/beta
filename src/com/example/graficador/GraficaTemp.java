@@ -192,11 +192,17 @@ public class GraficaTemp extends Activity {
 	    builder.setItems(items, new DialogInterface.OnClickListener() {
 	        public void onClick(DialogInterface dialog, int item) {
 	        
-	        	Intent i = new Intent(getApplicationContext(), IndPorSist.class);
+	        	Intent i = new Intent(getApplicationContext(), GraficaTemp.class);
 	        	i.putExtra("Origen", "Estatal");
-	        	i.putExtra("Estado", item +1);
+	        	i.putExtra("Estado", item + 1);
 	        	i.putExtra("Plantel", -1);
+	        	i.putExtra("Semaforo", semaforo);
 	        	startActivity(i);
+//	        	Intent i = new Intent(getApplicationContext(), IndPorSist.class);
+//	        	i.putExtra("Origen", "Estatal");
+//	        	i.putExtra("Estado", item +1);
+//	        	i.putExtra("Plantel", -1);
+//	        	startActivity(i);
 	        
 	        
 	        }
