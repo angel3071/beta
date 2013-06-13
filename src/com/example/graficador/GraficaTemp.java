@@ -67,7 +67,7 @@ public class GraficaTemp extends Activity {
                 		cadena = cadena +"-"+ entidad + "," + valor;
                 }
                 progresBar.dismiss();
-                Toast.makeText(getApplicationContext(), "La gr�fica aparecer� dentro de poco", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "La gráfica aparecerá dentro de poco", Toast.LENGTH_LONG).show();
                 mWebView.loadUrl("javascript:grafica(\""+cadena+","+this.title+"\")");
                 
                 
