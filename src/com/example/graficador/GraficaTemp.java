@@ -3,8 +3,13 @@ package com.example.graficador;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -114,31 +119,109 @@ public class GraficaTemp extends Activity {
       }
 	
 
+//		public boolean onKeyDown(int keyCode, KeyEvent event) {
+//			// TODO Auto-generated method stub
+//			if (keyCode == KeyEvent.KEYCODE_MENU){
+//				
+//				return true;
+//			}else{
+//			return super.onKeyDown(keyCode, event);
+//			}
+//		}
+	private class LeerJSON extends AsyncTask
+    <String, Void, String> {
+        private int id;
+
+
+		public LeerJSON(int i) {
+			// TODO Auto-generated constructor stub
+        	this.id = i;
+		}
+		protected String doInBackground(String... urls) {
+            return new JsonCont().readJSONFeed(urls[0]);
+        }
+//        Context context;
+        
+        protected void onPreExecute(){
+        	progresBar.setIndeterminate(true);
+			progresBar.setTitle("Descargando Información");
+			progresBar.setMessage("Por favor espere");
+			progresBar.setCancelable(false);
+			progresBar.show();
+        	
+        }
+        
+        
+        protected void onPostExecute(String result) {
+            try {
+     	
+                JSONArray array = new JSONArray(result);
+                String[] estados = new String[array.length()];
+
+	                for(int i=0;i<array.length(); i++){
+	                	
+	                	JSONObject b = array.getJSONObject(i);
+	                	estados[i] = b.getString("EntFed_Dsc");
+	                }
+
+                progresBar.dismiss();
+                Dialog d;
+
+                	d = crearDialogoSeleccionEstatal(estados);
+
+                d.show();
+                
+            } catch (Exception e) {
+            	
+                Log.d("ReadWeatherJSONFeedTask", e.getLocalizedMessage());
+                Toast.makeText(getBaseContext(), "Imposible Conectar a la Red",Toast.LENGTH_LONG).show();
+            }          
+        }
+    }
+
+
+
+	
+	private Dialog crearDialogoSeleccionEstatal(String[] estados)
+	{
+	    final String[] items = estados;
+	 
+	    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	 
+	    builder.setTitle("Seleccione un Estado");
+	    builder.setItems(items, new DialogInterface.OnClickListener() {
+	        public void onClick(DialogInterface dialog, int item) {
+	        
+	        	Intent i = new Intent(getApplicationContext(), IndPorSist.class);
+	        	i.putExtra("Origen", "Estatal");
+	        	i.putExtra("Estado", item +1);
+	        	i.putExtra("Plantel", -1);
+	        	startActivity(i);
+	        
+	        
+	        }
+	    });
+	 
+	    return builder.create();
+	}
 		@Override
 		public boolean onKeyDown(int keyCode, KeyEvent event) {
 			// TODO Auto-generated method stub
-			if (keyCode == KeyEvent.KEYCODE_MENU){
-				
-				return true;
-			}else{
-			return super.onKeyDown(keyCode, event);
-			}
-		}
+			switch (keyCode) {
+			case KeyEvent.KEYCODE_MENU:
+					
+//				progresBar = new ProgressDialog(this);
+				if(this.origen.equals("Nacional"))
+					new LeerJSON(1).execute("http://200.23.107.50:8083/siiecon.asmx/indicadorEstatal?IdIndicador=1");
 
-//		@Override
-//		public boolean onKeyDown(int keyCode, KeyEvent event) {
-//			// TODO Auto-generated method stub
-//			switch (keyCode) {
-//			case KeyEvent.KEYCODE_MENU:
-//					
-//						Intent i = new Intent(getApplicationContext(), IndPorSist.class);
-//						startActivity(i);
-//					
-//				break;
-//
-//			default:
-//				break;
-//			}
-//			return super.onKeyDown(keyCode, event);
-//		}
+
+
+					
+				break;
+
+			default:
+				break;
+			}
+			return super.onKeyDown(keyCode, event);
+		}
 }
