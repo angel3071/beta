@@ -72,8 +72,7 @@ public class GraficaTemp extends Activity {
                 		cadena = cadena +"-"+ entidad + "," + valor;
                 }
                 progresBar.dismiss();
-                
-                
+                Toast.makeText(getApplicationContext(), "La gr‡fica aparecer‡ dentro de poco", Toast.LENGTH_LONG).show();
                 mWebView.loadUrl("javascript:grafica(\""+cadena+","+this.title+"\")");
                 
                 
@@ -115,11 +114,11 @@ public class GraficaTemp extends Activity {
         	new ReadJSON("Estatal", "NombrePlantel").execute("http://200.23.107.50:8083/siiecon.asmx/indicadorPlantel?pIdEntidad="+estado+"&IdIndicador="+semaforo);
         }
 		
-		
+       
         
       }
 	
-<<<<<<< HEAD
+
 		@Override
 		public boolean onKeyDown(int keyCode, KeyEvent event) {
 			// TODO Auto-generated method stub
@@ -130,7 +129,7 @@ public class GraficaTemp extends Activity {
 			return super.onKeyDown(keyCode, event);
 			}
 		}
-=======
+
 //		@Override
 //		public boolean onKeyDown(int keyCode, KeyEvent event) {
 //			// TODO Auto-generated method stub
@@ -147,5 +146,5 @@ public class GraficaTemp extends Activity {
 //			}
 //			return super.onKeyDown(keyCode, event);
 //		}
->>>>>>> 1f4704c96bb66317a334e740c49bf2511f0354b2
+
 	}
