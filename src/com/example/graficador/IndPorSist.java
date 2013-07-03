@@ -32,7 +32,8 @@ public class IndPorSist extends Activity {
      String[] semaforos1;
 	public String origen;
 	public int estado;
-	public int plantel;
+	public String plantel;
+	public static final int[] sist = {1,2,4,7,8,12,15,17,19};
 	public static class Item{
 	    public final String text;
 	    public final int icon;
@@ -83,7 +84,7 @@ public class IndPorSist extends Activity {
                 	
                 	JSONObject b = array.getJSONObject(i);
                 	semaforos[i] = b.getString("Descripcion") + "%" + b.getString("Valor");
-                	semaforos1[i] = b.getString("IdIndicador");
+                	semaforos1[i] = b.getString("IdIndicador") +  "%" + b.getString("bml");
                 	
                 	
                 	
@@ -149,7 +150,8 @@ public class IndPorSist extends Activity {
 	        	i.putExtra("Origen", origen);
 	        	i.putExtra("Estado", estado);
 	        	i.putExtra("Plantel", plantel);
-	        	i.putExtra("Semaforo", Double.parseDouble(semaforos1[item]));
+	        	i.putExtra("Semaforo", Integer.parseInt(semaforos1[item].split("%")[0]));
+	        	i.putExtra("bml", Integer.parseInt(semaforos1[item].split("%")[1]));
 	        	startActivity(i);	        
 	        	}
 	    });
@@ -178,7 +180,7 @@ public class IndPorSist extends Activity {
 		Bundle bundle = getIntent().getExtras();
 		this.origen = bundle.getString("Origen");
 		this.estado = bundle.getInt("Estado");
-		this.plantel = bundle.getInt("Plantel");
+		this.plantel = bundle.getString("Plantel");
 		
 		gv.setAdapter(new MyAdapter(this));
 		gv.setOnItemClickListener(new OnItemClickListener() {
@@ -186,19 +188,19 @@ public class IndPorSist extends Activity {
 			@Override
             public void onItemClick(AdapterView<?> parent, View v,
                     int position, long id) {
-				if(position == 2 || position==3||position==4||position==5||position==6||position==7||position==8){ 
-	                Toast.makeText(getBaseContext(), "Resultados no disponibles",Toast.LENGTH_LONG).show();
-
-					return; }
+//				if(position == 2 || position==3||position==4||position==5||position==6||position==7||position==8){ 
+//	                Toast.makeText(getBaseContext(), "Resultados no disponibles",Toast.LENGTH_LONG).show();
+//
+//					return; }
 				
 				
 				progresBar = new ProgressDialog(v.getContext());
 				if(origen.equals("Nacional")){
-					new ReadJSON(position).execute("http://200.23.107.50:8083/siiecon.asmx/NacionalIndicadores?pIdSistema=" + (position + 1));
+					new ReadJSON(position).execute("http://200.23.107.50:8083/siiecon.asmx/nacionalIndicadores?pIdSistema=" + sist[position]);
 				}else if(origen.equals("Estatal")){
-					new ReadJSON(position).execute("http://200.23.107.50:8083/siiecon.asmx/EstatalIndicadores?pIdSistema=" + (position + 1) );
+					new ReadJSON(position).execute("http://200.23.107.50:8083/siiecon.asmx/estatalIndicadores?pIdEntidad="+estado+"&pIdSistema=" + sist[position] );
 				}else{
-					new ReadJSON(position).execute("http://200.23.107.50:8083/siiecon.asmx/PlantelIndicadores?pIdSistema=" + (position + 1) );
+					new ReadJSON(position).execute("http://200.23.107.50:8083/siiecon.asmx/plantelIndicadores?pCt="+plantel+"&pIdSistema=" + sist[position] );
 					
 				}
 				

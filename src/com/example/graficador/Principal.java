@@ -36,7 +36,7 @@ public class Principal extends Activity {
 //        Context context;
         
         protected void onPreExecute(){
-        	if(this.id==3) return;
+        	//if(this.id==3) return;
         	progresBar.setIndeterminate(true);
 			progresBar.setTitle("Descargando Información");
 			progresBar.setMessage("Por favor espere");
@@ -55,7 +55,7 @@ public class Principal extends Activity {
 	                for(int i=0;i<array.length(); i++){
 	                	
 	                	JSONObject b = array.getJSONObject(i);
-	                	estados[i] = b.getString("EntFed_Dsc");
+	                	estados[i] = b.getString("Nombre");
 	                	
 	                	
 	                }
@@ -63,7 +63,7 @@ public class Principal extends Activity {
                 	for(int i=0;i<array.length(); i++){
 	                	
 	                	JSONObject b = array.getJSONObject(i);
-	                	estados[i] = b.getString("NombrePlantel");
+	                	estados[i] = b.getString("Nombre") + "%" + b.getString("ct");
 	                	
 	                	
 	                }
@@ -81,6 +81,7 @@ public class Principal extends Activity {
             	
                 Log.d("ReadWeatherJSONFeedTask", e.getLocalizedMessage());
                 Toast.makeText(getBaseContext(), "Imposible Conectar a la Red",Toast.LENGTH_LONG).show();
+                if(progresBar.isShowing()) progresBar.dismiss();
             }          
         }
     }
@@ -121,17 +122,20 @@ public class Principal extends Activity {
 //	            Dialog d = crearDialogoSeleccionPlantelEstado(item);
 //	            d.show();
 	        	estado = item +1;
-	        	new LeerJSON(3).execute("http://200.23.107.50:8083/siiecon.asmx/indicadorPlantel?pIdEntidad="+ (item + 1) +"&IdIndicador=77");
+	        	new LeerJSON(3).execute("http://200.23.107.50:8083/siiecon.asmx/lstCentrosDeTrabajo?pIdEntidad="+ estado);
 	        }
 	    });
 	 
 	    return builder.create();
 	}
 	
-	private Dialog crearDialogoSeleccionPlantelEstado(String[] planteles){
+	private Dialog crearDialogoSeleccionPlantelEstado(final String[] planteles){
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Seleccione un Plantel");
-        builder.setItems(planteles, new DialogInterface.OnClickListener() {
+        final String[] a = new String[planteles
+                                      .length];
+        for(int i=0; i< a.length; i++) a[i] = planteles[i].split("%")[0];
+        builder.setItems(a, new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -139,7 +143,7 @@ public class Principal extends Activity {
 				Intent i = new Intent(getApplicationContext(), IndPorSist.class);
 				i.putExtra("Origen", "Plantel");
 	        	i.putExtra("Estado", estado);
-	        	i.putExtra("Plantel", which + 1);
+	        	i.putExtra("Plantel", planteles[which].split("%")[1]);
 	        	startActivity(i);
 			}
 		}) ;
@@ -172,7 +176,7 @@ public class Principal extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				progresBar = new ProgressDialog(v.getContext());
-				new LeerJSON(1).execute("http://200.23.107.50:8083/siiecon.asmx/indicadorEstatal?IdIndicador=1");
+				new LeerJSON(1).execute("http://200.23.107.50:8083/siiecon.asmx/lstEntidadesFederativas");
 				
 
 				//progresBar.dismiss();
@@ -192,7 +196,10 @@ public class Principal extends Activity {
 //				progresBar = new ProgressDialog(v.getContext());
 //				new LeerJSON(2).execute("http://200.23.107.50:8083/siiecon.asmx/indicadorEstatal?IdIndicador=1");
 //				
-				Toast.makeText(getApplicationContext(), "No disponible por el momento", Toast.LENGTH_LONG).show();
+				progresBar = new ProgressDialog(v.getContext());
+				new LeerJSON(2).execute("http://200.23.107.50:8083/siiecon.asmx/lstEntidadesFederativas");
+				
+				//Toast.makeText(getApplicationContext(), "No disponible por el momento", Toast.LENGTH_LONG).show();
 				//d.setContentView(R.layout.estados_layout);
 				
 				

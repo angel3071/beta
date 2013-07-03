@@ -22,8 +22,9 @@ public class GraficaTemp extends Activity {
 	private WebView mWebView;
 	public String origen;
 	public int estado;
-	public int plantel;
-	public double semaforo;
+	public String plantel;
+	public int semaforo;
+	public int bml;
 	ProgressDialog progresBar;
 	
 	
@@ -96,8 +97,9 @@ public class GraficaTemp extends Activity {
 		Bundle bundle = getIntent().getExtras();
 		this.origen = bundle.getString("Origen");
 		this.estado = bundle.getInt("Estado");
-		this.plantel = bundle.getInt("Plantel");
-		this.semaforo = bundle.getDouble("Semaforo");
+		this.plantel = bundle.getString("Plantel");
+		this.semaforo = bundle.getInt("Semaforo");
+		this.bml = bundle.getInt("bml");
 		mWebView = (WebView) findViewById(R.id.mybrowser);
         
         // Activo JavaScript
@@ -112,7 +114,8 @@ public class GraficaTemp extends Activity {
         	new ReadJSON("Nacional", "EntFed_Dsc").execute("http://200.23.107.50:8083/siiecon.asmx/indicadorEstatal?IdIndicador="+semaforo);
         }else if(origen.equals("Estatal")){
         	new ReadJSON("Estatal", "NombrePlantel").execute("http://200.23.107.50:8083/siiecon.asmx/indicadorPlantel?pIdEntidad="+estado+"&IdIndicador="+semaforo);
-        }
+        }else
+        	new ReadJSON("Plantel", "Nombre").execute("http://200.23.107.50:8083/siiecon.asmx/situacionCt?pCt=" + plantel +"&pIdIndicador=" +  semaforo);
 		
        
         

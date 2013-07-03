@@ -42,7 +42,7 @@ public class JsonCont {
 	        } catch (Exception e) {
 	            Log.d("readJSONFeed", e.getLocalizedMessage());
 	        }        
-	        return stringBuilder.toString().replaceFirst("<string xmlns=\"http://tempuri.org/\">", "").replaceFirst("</string>", "");
+	        return stringBuilder.toString().replaceFirst("<string xmlns=\"siie\">", "").replaceFirst("</string>", "");
 	    }                                                 
 	
 	   
