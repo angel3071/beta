@@ -101,8 +101,8 @@ public class GraficaTemp extends Activity {
             		   
             	   }
             	   
-            	   
-            	   
+            	   // Se debería generar una cadena similiar a la siguiente
+            	   //cadena = "veracruz,45,65,76-oaxaca,45,32,56";
             	   
             	   progresBar.dismiss();
                    Toast.makeText(getApplicationContext(), "La grafica aparecera dentro de poco", Toast.LENGTH_LONG).show();
