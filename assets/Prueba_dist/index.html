@@ -138,7 +138,7 @@
 
                          tickRenderer: $.jqplot.CanvasAxisTickRenderer ,
                          tickOptions: {
-                                angle: -90,
+                                angle: 0,
                                 fontSize: '10pt'
                     }
                     },
@@ -152,7 +152,7 @@
             // not touch, the grid boundaries.  1.2 is the default padding.
             yaxis: {
                 pad: 1.05,
-                tickOptions: {formatString: '$%d'}
+                tickOptions: {formatString: '%d'}
             }
         }
     });
@@ -174,8 +174,8 @@
 			<div id="chart1" style="height:500px;width:480px; "></div>
 			
 		</center>
-        
-<button onclick='graficaBML("AGUASCALIENTES,22.0,23.0,24.0-BAJA CALIFORNIA,22.0,22.0,22.0-BAJA CALIFORNIA SUR,27.0,21.0,20.0-CAMPECHE,18.0,18.0,19.0", "Nombre")'>Click me</button> 
+        <!--
+<button onclick='graficaBML("AGUASCALIENTES,22.0,23.0,24.0-BAJA CALIFORNIA,22.0,22.0,22.0-BAJA CALIFORNIA SUR,27.0,21.0,20.0-CAMPECHE,18.0,18.0,19.0", "Nombre")'>Click me</button> -->
         		
 	</body>
 </html>
