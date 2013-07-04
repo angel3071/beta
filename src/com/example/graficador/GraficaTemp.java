@@ -33,11 +33,13 @@ public class GraficaTemp extends Activity {
     <String, Void, String> {
         private String title;
         private String tag;
+        private int bml;
 
 		
-        public ReadJSON(String title, String tag){
+        public ReadJSON(String title, String tag, int bml){
         	this.title = title;
         	this.tag = tag;
+        	this.bml = bml;
         }
 
 		protected String doInBackground(String... urls) {
@@ -46,7 +48,7 @@ public class GraficaTemp extends Activity {
 
 		protected void onPreExecute(){
         	progresBar.setIndeterminate(true);
-			progresBar.setTitle("Descargando Información");
+			progresBar.setTitle("Descargando Informacion");
 			progresBar.setMessage("Por favor espere");
 			progresBar.setCancelable(false);
 			progresBar.show();
@@ -58,7 +60,9 @@ public class GraficaTemp extends Activity {
      
             	JSONArray array = new JSONArray(result);
                 String cadena = "";
-
+                
+                
+               if(this.bml == 0){
                 for(int i=0;i<array.length(); i++){
                 	
                 	JSONObject b = array.getJSONObject(i);
@@ -71,9 +75,42 @@ public class GraficaTemp extends Activity {
                 	}
                 	
                 		cadena = cadena +"-"+ entidad + "," + valor;
+                		
+                		
                 }
+                		progresBar.dismiss();
+                		Toast.makeText(getApplicationContext(), "La grafica aparecera dentro de poco", Toast.LENGTH_LONG).show();
+                		mWebView.loadUrl("javascript:grafica(\""+cadena+","+this.title+"\")");
+                
+               }else{
+            	   
+            	   for(int i=0; i < array.length(); i++){
+            		   JSONObject b = array.getJSONObject(i);
+            		   String entidad = b.getString(this.tag);
+            		   String valor = b.getString("Valor");
+            		   String meta = b.getString("Meta");
+            		   String base = b.getString("Base");
+            		   
+            		   if(i == 0){
+            			   cadena = cadena + entidad + "," + valor + "," + meta + "," + base;
+            		   }
+            		   
+            		   cadena = cadena + "-" + entidad + "," + valor + "," + meta + "," + base;
+            		   
+            		   
+            		   
+            	   }
+            	   
+            	   progresBar.dismiss();
+                   Toast.makeText(getApplicationContext(), "La grafica aparecera dentro de poco", Toast.LENGTH_LONG).show();
+                   mWebView.loadUrl("javascript:graficaBML(\""+cadena+","+this.title+"\")");
+            	   
+               }
+                
+                
+                
                 progresBar.dismiss();
-                Toast.makeText(getApplicationContext(), "La gráfica aparecerá dentro de poco", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "La grafica aparecera dentro de poco", Toast.LENGTH_LONG).show();
                 mWebView.loadUrl("javascript:grafica(\""+cadena+","+this.title+"\")");
                 
                 
@@ -111,11 +148,11 @@ public class GraficaTemp extends Activity {
         
         progresBar = new ProgressDialog(this);
         if(origen.equals("Nacional")){
-        	new ReadJSON("Nacional", "EntFed_Dsc").execute("http://200.23.107.50:8083/siiecon.asmx/indicadorEstatal?IdIndicador="+semaforo);
+        	new ReadJSON("Nacional", "EntFed_Dsc", this.bml).execute("http://200.23.107.50:8083/siiecon.asmx/indicadorEstatal?IdIndicador="+semaforo);
         }else if(origen.equals("Estatal")){
-        	new ReadJSON("Estatal", "NombrePlantel").execute("http://200.23.107.50:8083/siiecon.asmx/indicadorPlantel?pIdEntidad="+estado+"&IdIndicador="+semaforo);
+        	new ReadJSON("Estatal", "NombrePlantel", this.bml).execute("http://200.23.107.50:8083/siiecon.asmx/indicadorPlantel?pIdEntidad="+estado+"&IdIndicador="+semaforo);
         }else
-        	new ReadJSON("Plantel", "Nombre").execute("http://200.23.107.50:8083/siiecon.asmx/situacionCt?pCt=" + plantel +"&pIdIndicador=" +  semaforo);
+        	new ReadJSON("Plantel", "Nombre", this.bml).execute("http://200.23.107.50:8083/siiecon.asmx/situacionCt?pCt=" + plantel +"&pIdIndicador=" +  semaforo);
 		
        
         
@@ -147,7 +184,7 @@ public class GraficaTemp extends Activity {
         
         protected void onPreExecute(){
         	progresBar.setIndeterminate(true);
-			progresBar.setTitle("Descargando Información");
+			progresBar.setTitle("Descargando Informacion");
 			progresBar.setMessage("Por favor espere");
 			progresBar.setCancelable(false);
 			progresBar.show();
