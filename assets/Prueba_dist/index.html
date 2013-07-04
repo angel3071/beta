@@ -74,7 +74,7 @@
 		function graficaBML(paramString, titleParam){
 
 
-            document.getElementById('chart1').style.width = '2000px';
+            document.getElementById('chart1').style.width = '3000px';
 
 			var cadena = paramString;
 
@@ -100,13 +100,13 @@
 						ticks.push(tempArray[j]);
 
 					if(j==1)
-						s3.push(tempArray[j]);
+						s3.push(parseFloat(tempArray[j]));
 
 					if(j==2)
-						s2.push(tempArray[j]);
+						s2.push(parseFloat(tempArray[j]));
 					
 					if(j==3)
-						s1.push(tempArray[j])
+						s1.push(parseFloat(tempArray[j]));
 				}
 			}
 
@@ -171,12 +171,17 @@
 	</head>
 	<body>
 		<center>
-			<div id="chart1" style="height:300px;width:480px; "></div>
+			<div id="chart1" style="height:500px;width:480px; "></div>
 			
 		</center>
         
+<<<<<<< HEAD
 		<button onclick='graficaBML("AGUASCALIENTES,22,23,24-BAJA CALIFORNIA,22,22,22-BAJA CALIFORNIA SUR,27.0,21.0,20.0-CAMPECHE,18.0,18.0,19.0-COAHUILA,21.0,21.0,22.0-COLIMA,15.0,15.0,15.0-CHIAPAS,23.0,22.0,22.0-CHIHUAHUA,21.0,22.0,22.0-DISTRITO FEDERAL,22.0,23.0,23.0-DURANGO,21.0,21.0,21.0-GUANAJUATO,25.0,24.0,23.0-GUERRERO,20.0,19.0,19.0-HIDALGO,20.0,19.0,19.0-JALISCO,23.0,23.0,23.0-ESTADO DE MEXICO,22.0,22.0,22.0-MICHOACAN,20.0,19.0,19.0-MORELOS,22.0,23.0,22.0-NAYARIT,17.0,17.0,17.0-NUEVO LEON,16.0,16.0,16.0-OAXACA,25.0,15.0,25.0-PUEBLA,26.0,25.0,25.0-QUERETARO,22.0,21.0,19.0-QUINTANA ROO,18.0,19.0,20.0-SAN LUIS POTOSI,20.0,21.0,20.0-SINALOA,22.0,24.0,25.0-SONORA,21.0,22.0,21.0-TABASCO,28.0,31.0,31.0-TAMAULIPAS,22.0,23.0,23.0-TLAXCALA,26.0,27.0,26.0-VERACRUZ,22.0,22.0,21.0-YUCATAN,18.0,18.0,19.0-ZACATECAS,21.0,21.0,20.0","Nacional")'>Click me</button> 
     
+=======
+		<button onclick='graficaBML("AGUASCALIENTES,22.0,23.0,24.0-BAJA CALIFORNIA,22.0,22.0,22.0-BAJA CALIFORNIA SUR,27.0,21.0,20.0-CAMPECHE,18.0,18.0,19.0", "Nombre")'>Click me</button> 
+        
+>>>>>>> bdea155e572451b469fc8a95994cff41995e9212
 		
 	</body>
 </html>
