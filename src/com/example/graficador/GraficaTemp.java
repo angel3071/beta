@@ -84,7 +84,7 @@ public class GraficaTemp extends Activity {
                 
                }else{
             	   
-            	   for(int i=0; i < array.length(); i++){
+            	   /*for(int i=0; i < array.length(); i++){
             		   JSONObject b = array.getJSONObject(i);
             		   String entidad = b.getString(this.tag);
             		   String valor = b.getString("Valor");
@@ -100,6 +100,9 @@ public class GraficaTemp extends Activity {
             		   
             		   
             	   }
+            	   */
+            	   
+            	   cadena = "veracruz,45,56,78-algo,45,65,43";
             	   
             	   progresBar.dismiss();
                    Toast.makeText(getApplicationContext(), "La grafica aparecera dentro de poco", Toast.LENGTH_LONG).show();
