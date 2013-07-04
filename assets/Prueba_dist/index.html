@@ -73,6 +73,9 @@
 
 		function graficaBML(paramString, titleParam){
 
+
+            document.getElementById('chart1').style.width = '2000px';
+
 			var cadena = paramString;
 
 			var s1 = [];
@@ -97,13 +100,13 @@
 						ticks.push(tempArray[j]);
 
 					if(j==1)
-						s1.push(tempArray[j]);
+						s3.push(tempArray[j]);
 
 					if(j==2)
 						s2.push(tempArray[j]);
 					
 					if(j==3)
-						s3.push(tempArray[j])
+						s1.push(tempArray[j])
 				}
 			}
 
@@ -168,11 +171,12 @@
 	</head>
 	<body>
 		<center>
-			<div id="chart1" style="height:300px;width:2000px; "></div>
+			<div id="chart1" style="height:300px;width:480px; "></div>
 			
 		</center>
-		<!--
-		<button onclick='graficaBML("veracruz,45,56,78-algo,45,65,43", "Nombre")'>Click me</button> 
-		-->
+        <!--
+		<button onclick='grafica("veracruz,45,56,78-algo,45,65,43", "Nombre")'>Click me</button> 
+    -->
+		
 	</body>
 </html>
