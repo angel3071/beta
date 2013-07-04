@@ -109,9 +109,7 @@ public class GraficaTemp extends Activity {
                 
                 
                 
-                progresBar.dismiss();
-                Toast.makeText(getApplicationContext(), "La grafica aparecera dentro de poco", Toast.LENGTH_LONG).show();
-                mWebView.loadUrl("javascript:grafica(\""+cadena+","+this.title+"\")");
+               
                 
                 
                 
