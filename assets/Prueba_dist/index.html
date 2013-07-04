@@ -74,7 +74,7 @@
 		function graficaBML(paramString, titleParam){
 
 
-            document.getElementById('chart1').style.width = '2000px';
+            document.getElementById('chart1').style.width = '4000px';
 
 			var cadena = paramString;
 
@@ -100,13 +100,13 @@
 						ticks.push(tempArray[j]);
 
 					if(j==1)
-						s3.push(tempArray[j]);
+						s3.push(parseFloat(tempArray[j]));
 
 					if(j==2)
-						s2.push(tempArray[j]);
+						s2.push(parseFloat(tempArray[j]));
 					
 					if(j==3)
-						s1.push(tempArray[j])
+						s1.push(parseFloat(tempArray[j]));
 				}
 			}
 
@@ -171,12 +171,12 @@
 	</head>
 	<body>
 		<center>
-			<div id="chart1" style="height:300px;width:480px; "></div>
+			<div id="chart1" style="height:700px;width:480px; "></div>
 			
 		</center>
-        <!--
-		<button onclick='grafica("veracruz,45,56,78-algo,45,65,43", "Nombre")'>Click me</button> 
-    -->
+        
+		<button onclick='graficaBML("AGUASCALIENTES,22.0,23.0,24.0-BAJA CALIFORNIA,22.0,22.0,22.0-BAJA CALIFORNIA SUR,27.0,21.0,20.0-CAMPECHE,18.0,18.0,19.0", "Nombre")'>Click me</button> 
+        
 		
 	</body>
 </html>
