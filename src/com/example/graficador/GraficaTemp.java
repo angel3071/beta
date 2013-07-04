@@ -206,7 +206,7 @@ public class GraficaTemp extends Activity {
 	                for(int i=0;i<array.length(); i++){
 	                	
 	                	JSONObject b = array.getJSONObject(i);
-	                	estados[i] = b.getString("EntFed_Dsc");
+	                	estados[i] = b.getString("Nombre");
 	                }
 
                 progresBar.dismiss();
@@ -242,6 +242,7 @@ public class GraficaTemp extends Activity {
 	        	i.putExtra("Estado", item + 1);
 	        	i.putExtra("Plantel", -1);
 	        	i.putExtra("Semaforo", semaforo);
+	        	i.putExtra("bml", bml);
 	        	startActivity(i);
 //	        	Intent i = new Intent(getApplicationContext(), IndPorSist.class);
 //	        	i.putExtra("Origen", "Estatal");
@@ -263,7 +264,7 @@ public class GraficaTemp extends Activity {
 					
 //				progresBar = new ProgressDialog(this);
 				if(this.origen.equals("Nacional"))
-					new LeerJSON(1).execute("http://200.23.107.50:8083/siiecon.asmx/indicadorEstatal?IdIndicador=1");
+					new LeerJSON(1).execute("http://200.23.107.50:8083/siiecon.asmx/lstEntidadesFederativas");
 
 
 

@@ -33,6 +33,7 @@ public class IndPorSist extends Activity {
 	public String origen;
 	public int estado;
 	public String plantel;
+	public double avance;
 	public static final int[] sist = {1,2,4,7,8,12,15,17,19};
 	public static class Item{
 	    public final String text;
@@ -49,6 +50,7 @@ public class IndPorSist extends Activity {
 	private class ReadJSON extends AsyncTask
     <String, Void, String> {
         private int sistema;
+		
 
 		public ReadJSON(int position) {
 			// TODO Auto-generated constructor stub
@@ -60,6 +62,7 @@ public class IndPorSist extends Activity {
         }
 
 		protected void onPreExecute(){
+			if(this.sistema == -1) return;
         	progresBar.setIndeterminate(true);
 			progresBar.setTitle("Descargando Información");
 			progresBar.setMessage("Por favor espere");
@@ -71,7 +74,12 @@ public class IndPorSist extends Activity {
         protected void onPostExecute(String result) {
             try {
      
-            	
+            	if(this.sistema == -1){
+            		
+            		avance = Double.parseDouble(result);            		
+            		
+            		return;
+            	}
             	
             	
             	
@@ -80,18 +88,19 @@ public class IndPorSist extends Activity {
                 JSONArray array = new JSONArray(result);
                 String[] semaforos = new String[array.length()];
                 semaforos1 = new String[array.length()];
+                String sistema = "";
                 for(int i=0;i<array.length(); i++){
                 	
                 	JSONObject b = array.getJSONObject(i);
                 	semaforos[i] = b.getString("Descripcion") + "%" + b.getString("Valor");
                 	semaforos1[i] = b.getString("IdIndicador") +  "%" + b.getString("bml");
                 	
-                	
+                	sistema =  b.getString("Sistema");
                 	
                 }
                 progresBar.dismiss();
 //                semaforos1 = semaforos;
-                Dialog d = crearDialogoSemaforos(semaforos);
+                Dialog d = crearDialogoSemaforos(semaforos, sistema);
                 d.show();
                 
             } catch (Exception e) {
@@ -102,7 +111,7 @@ public class IndPorSist extends Activity {
             }          
         }
     }
-	private Dialog crearDialogoSemaforos(String[] semaforos)
+	private Dialog crearDialogoSemaforos(String[] semaforos, String sistema)
 	{
 	    final Item[] items = new Item[semaforos.length];
 
@@ -143,7 +152,7 @@ public class IndPorSist extends Activity {
 	 
 	    AlertDialog.Builder builder = new AlertDialog.Builder(this);
 	 
-	    builder.setTitle("Seleccione una Gráfica");
+	    builder.setTitle(this.origen + " " + sistema + " " + (this.avance != -1.0 ? (this.avance + "%") : ""));
 	    builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
 	        public void onClick(DialogInterface dialog, int item) {
 	        	Intent i = new Intent(getApplicationContext(), GraficaTemp.class);
@@ -196,10 +205,13 @@ public class IndPorSist extends Activity {
 				
 				progresBar = new ProgressDialog(v.getContext());
 				if(origen.equals("Nacional")){
+					new ReadJSON(-1).execute("http://200.23.107.50:8083/siiecon.asmx/avanseSistema?pIdSistema=" + sist[position]);
 					new ReadJSON(position).execute("http://200.23.107.50:8083/siiecon.asmx/nacionalIndicadores?pIdSistema=" + sist[position]);
 				}else if(origen.equals("Estatal")){
+					new ReadJSON(-1).execute("http://200.23.107.50:8083/siiecon.asmx/avanseSistema?pIdSistema=" + sist[position]);
 					new ReadJSON(position).execute("http://200.23.107.50:8083/siiecon.asmx/estatalIndicadores?pIdEntidad="+estado+"&pIdSistema=" + sist[position] );
 				}else{
+					new ReadJSON(-1).execute("http://200.23.107.50:8083/siiecon.asmx/avanseSistema?pIdSistema=" + sist[position]);
 					new ReadJSON(position).execute("http://200.23.107.50:8083/siiecon.asmx/plantelIndicadores?pCt="+plantel+"&pIdSistema=" + sist[position] );
 					
 				}
