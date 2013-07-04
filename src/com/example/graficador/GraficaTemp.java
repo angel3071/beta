@@ -85,6 +85,7 @@ public class GraficaTemp extends Activity {
                }else{
             	   
             	   for(int i=0; i < array.length(); i++){
+            		   outer:{
             		   JSONObject b = array.getJSONObject(i);
             		   String entidad = b.getString(this.tag);
             		   String valor = b.getString("Valor");
@@ -93,11 +94,12 @@ public class GraficaTemp extends Activity {
             		   
             		   if(i == 0){
             			   cadena = cadena + entidad + "," + valor + "," + meta + "," + base;
+            			   break outer;
             		   }
             		   
             		   cadena = cadena + "-" + entidad + "," + valor + "," + meta + "," + base;
             		   
-            		   
+            	   }
             		   
             	   }
             	   
