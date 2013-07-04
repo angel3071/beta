@@ -64,7 +64,7 @@ public class GraficaTemp extends Activity {
                 
                if(this.bml == 0){
                 for(int i=0;i<array.length(); i++){
-                	
+                	outer:{
                 	JSONObject b = array.getJSONObject(i);
                 	
                 	String entidad = b.getString(this.tag);
@@ -72,11 +72,12 @@ public class GraficaTemp extends Activity {
                 	
                 	if(i == 0){
                 		cadena = cadena + entidad + "," + valor;	
+                		break outer;
                 	}
                 	
                 		cadena = cadena +"-"+ entidad + "," + valor;
                 		
-                		
+                }
                 }
                 		progresBar.dismiss();
                 		Toast.makeText(getApplicationContext(), "La grafica aparecera dentro de poco", Toast.LENGTH_LONG).show();
