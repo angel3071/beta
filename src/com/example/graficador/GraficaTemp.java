@@ -145,6 +145,7 @@ public class GraficaTemp extends Activity {
         
         // Activo JavaScript
         mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.getSettings().setSupportZoom(true);
         // Cargamos la url que necesitamos    
         mWebView.loadUrl("file:///android_asset/Prueba_dist/index.html");
         
