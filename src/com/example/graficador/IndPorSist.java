@@ -202,7 +202,7 @@ public class IndPorSist extends Activity {
 //
 //					return; }
 				
-				
+				if(position>8) return;
 				progresBar = new ProgressDialog(v.getContext());
 				if(origen.equals("Nacional")){
 					new ReadJSON(-1).execute("http://200.23.107.50:8083/siiecon.asmx/avanseSistema?pIdSistema=" + sist[position]);

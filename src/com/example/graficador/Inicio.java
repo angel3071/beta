@@ -71,28 +71,28 @@ public class Inicio extends Activity {
 				String username = usuario.getText().toString();
 				String pass = password.getText().toString();
 				try{
-//					if(username.length() > 0 && pass.length() >0)
-//					{
-//						DBUserAdapter dbUser = new DBUserAdapter(getApplicationContext());
-//						dbUser.open();
-//						for(int i=1;i<33;i++){
-//							if(i<10)
-//								dbUser.AddUser("SEO0" + i, "seo0" + i);
-//							else
-//								dbUser.AddUser("SEO" + i, "seo" + i);
-//
-//						}
-//						if(dbUser.Login(username, pass))
-//						{
+					if(username.length() > 0 && pass.length() >0)
+					{
+						DBUserAdapter dbUser = new DBUserAdapter(getApplicationContext());
+						dbUser.open();
+						for(int i=1;i<33;i++){
+							if(i<10)
+								dbUser.AddUser("SEO0" + i, "seo0" + i);
+							else
+								dbUser.AddUser("SEO" + i, "seo" + i);
+
+						}
+						if(dbUser.Login(username, pass))
+						{
 							Toast.makeText(getApplicationContext(),"Bienvenido", Toast.LENGTH_LONG).show();
 							Intent i = new Intent(getApplicationContext(), Principal.class);
 							startActivity(i);
-//						}else{
-//							Toast.makeText(getApplicationContext(),"Usuario o Contraseña Inválidos", Toast.LENGTH_LONG).show();
-//						}
-//						dbUser.close();
-//					}else{Toast.makeText(getApplicationContext(),"Usuario o Contraseña Inválidos", Toast.LENGTH_LONG).show();
-//					return;}
+						}else{
+							Toast.makeText(getApplicationContext(),"Usuario o Contraseña Inválidos", Toast.LENGTH_LONG).show();
+						}
+						dbUser.close();
+					}else{Toast.makeText(getApplicationContext(),"Usuario o Contraseña Inválidos", Toast.LENGTH_LONG).show();
+					return;}
 					
 				}catch(Exception e)
 				{
