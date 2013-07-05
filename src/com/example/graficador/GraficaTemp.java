@@ -82,7 +82,7 @@ public class GraficaTemp extends Activity {
                 }
                 		progresBar.dismiss();
                 		Toast.makeText(getApplicationContext(), "La grafica aparecera dentro de poco", Toast.LENGTH_LONG).show();
-                		mWebView.loadUrl("javascript:grafica(\""+cadena+","+this.title+"\")");
+                		mWebView.loadUrl("javascript:grafica(\""+cadena+"\",\""+this.title+"\")");
                 
                }else{
             	   
@@ -110,7 +110,7 @@ public class GraficaTemp extends Activity {
             	   
             	   progresBar.dismiss();
                    Toast.makeText(getApplicationContext(), "La grafica aparecera dentro de poco", Toast.LENGTH_LONG).show();
-                   mWebView.loadUrl("javascript:graficaBML(\""+cadena+","+this.title+"\")");
+                   mWebView.loadUrl("javascript:graficaBML(\""+cadena+"\",\""+this.title+"\")");
             	   
                }
                 
