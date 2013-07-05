@@ -74,16 +74,7 @@
 		function graficaBML(paramString, titleParam){
 
 
-           if(titleParam == "Nacional"){
-
-                document.getElementById('chart1').style.width = '2000px';
-                
-            }else if(titleParam == "Estatal"){
-                var tamParcial = s1.length * 60;
-                var tamTotal = tamParcial.toString() + "px";
-                document.getElementById('chart1').style.width = tamTotal;
-            }
-
+          
 			var cadena = paramString;
 
 			var s1 = [];
@@ -119,7 +110,17 @@
 			}
 
 
-            
+
+
+             if(titleParam == "Nacional"){
+
+                document.getElementById('chart1').style.width = '2000px';
+                
+            }else if(titleParam == "Estatal"){
+                var tamParcial = s1.length * 60;
+                var tamTotal = tamParcial.toString() + "px";
+                document.getElementById('chart1').style.width = tamTotal;
+            }
 
 
             
