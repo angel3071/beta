@@ -74,7 +74,15 @@
 		function graficaBML(paramString, titleParam){
 
 
-            document.getElementById('chart1').style.width = '2000px';
+           if(titleParam == "Nacional"){
+
+                document.getElementById('chart1').style.width = '2000px';
+                
+            }else if(titleParam == "Estatal"){
+                var tamParcial = s1.length * 60;
+                var tamTotal = tamParcial.toString() + "px";
+                document.getElementById('chart1').style.width = tamTotal;
+            }
 
 			var cadena = paramString;
 
@@ -110,6 +118,11 @@
 				}
 			}
 
+
+            
+
+
+            
 
 		var plot1 = $.jqplot('chart1', [s1, s2, s3], {
         // The "seriesDefaults" option is an options object that will

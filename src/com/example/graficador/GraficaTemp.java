@@ -31,6 +31,7 @@ public class GraficaTemp extends Activity {
 	
 	private class ReadJSON extends AsyncTask
     <String, Void, String> {
+		
         private String title;
         private String tag;
         private int bml;
