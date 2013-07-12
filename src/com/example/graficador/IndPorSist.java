@@ -92,7 +92,8 @@ public class IndPorSist extends Activity {
                 for(int i=0;i<array.length(); i++){
                 	
                 	JSONObject b = array.getJSONObject(i);
-                	semaforos[i] = b.getString("Descripcion") + "%" + b.getString("Valor");
+                	semaforos[i] = b.getString("Descripcion") + "%" + b.getString("Valor")+ "%" +
+                	b.getString("Base")+"%" + b.getString("Meta") + "%" +b.getString("bml");
                 	semaforos1[i] = b.getString("IdIndicador") +  "%" + b.getString("bml");
                 	
                 	sistema =  b.getString("Sistema");
@@ -116,16 +117,33 @@ public class IndPorSist extends Activity {
 	    final Item[] items = new Item[semaforos.length];
 
 		for(int i=0; i<semaforos.length; i++){
-			Double valor = Double.parseDouble(semaforos[i].split("%")[1]);
-			if( valor < 51.00)
-				items[i] = new Item(semaforos[i].split("%")[0], R.drawable.semar);
-			else if(valor>=51.00 && valor<=75.00)
-				items[i] = new Item(semaforos[i].split("%")[0], R.drawable.semaa);
-			else if(valor> 75.00)
-				items[i] = new Item(semaforos[i].split("%")[0], R.drawable.semav);
-			else
-				items[i] = new Item(semaforos[i].split("%")[0], 0);
-
+			String[] tmp = new String[semaforos.length];
+			tmp = semaforos[i].split("%");
+			int bml = Integer.parseInt(tmp[4]);
+			if (bml == 1){
+				
+				Double valor = Double.parseDouble(tmp[1]);
+				if( valor < 51.00)
+					items[i] = new Item(tmp[0] + "\nLogro:" + tmp[1] + " Base:" + tmp[2] + " Meta:" + tmp[3], R.drawable.semar);
+				else if(valor>=51.00 && valor<=75.00)
+					items[i] = new Item(tmp[0] + "\nLogro:" + tmp[1] + " Base:" + tmp[2] + " Meta:" + tmp[3], R.drawable.semaa);
+				else if(valor> 75.00)
+					items[i] = new Item(tmp[0] + "\nLogro:" + tmp[1] + " Base:" + tmp[2] + " Meta:" + tmp[3], R.drawable.semav);
+				else
+					items[i] = new Item(tmp[0] + "\nLogro:" + tmp[1] + " Base:" + tmp[2] + " Meta:" + tmp[3], 0);
+				
+			}
+			else{
+				Double valor = Double.parseDouble(tmp[1]);
+				if( valor < 51.00)
+					items[i] = new Item(tmp[0] + "-" + tmp[1] + "%", R.drawable.semar);
+				else if(valor>=51.00 && valor<=75.00)
+					items[i] = new Item(tmp[0] + "-" + tmp[1] + "%", R.drawable.semaa);
+				else if(valor> 75.00)
+					items[i] = new Item(tmp[0] + "-" + tmp[1] + "%", R.drawable.semav);
+				else
+					items[i] = new Item(tmp[0] + "-" + tmp[1] + "%", 0);
+			}
 
 		}
 	    
