@@ -94,7 +94,8 @@ public class IndPorSist extends Activity {
                 	JSONObject b = array.getJSONObject(i);
                 	semaforos[i] = b.getString("Descripcion") + "%" + b.getString("Valor")+ "%" +
                 	b.getString("Base")+"%" + b.getString("Meta") + "%" +b.getString("bml");
-                	semaforos1[i] = b.getString("IdIndicador") +  "%" + b.getString("bml");
+                	semaforos1[i] = b.getString("IdIndicador") +  "%" + b.getString("bml")
+                			+ "%" + b.getString("Descripcion");
                 	
                 	sistema =  b.getString("Sistema");
                 	
@@ -178,6 +179,7 @@ public class IndPorSist extends Activity {
 	        	i.putExtra("Estado", estado);
 	        	i.putExtra("Plantel", plantel);
 	        	i.putExtra("Semaforo", Integer.parseInt(semaforos1[item].split("%")[0]));
+	        	i.putExtra("semString",	semaforos1[item].split("%")[2]);
 	        	i.putExtra("bml", Integer.parseInt(semaforos1[item].split("%")[1]));
 	        	startActivity(i);	        
 	        	}

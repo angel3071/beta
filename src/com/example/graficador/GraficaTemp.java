@@ -81,7 +81,7 @@ public class GraficaTemp extends Activity {
                 }
                 }
                 		progresBar.dismiss();
-                		Toast.makeText(getApplicationContext(), "La grafica aparecera dentro de poco", Toast.LENGTH_LONG).show();
+                		Toast.makeText(getApplicationContext(), "La gráfica aparecerá dentro de poco", Toast.LENGTH_LONG).show();
                 		mWebView.loadUrl("javascript:grafica(\""+cadena+"\",\""+this.title+"\")");
                 
                }else{
@@ -109,7 +109,7 @@ public class GraficaTemp extends Activity {
             	   //cadena = "veracruz,45,65,76-oaxaca,45,32,56";
             	   
             	   progresBar.dismiss();
-                   Toast.makeText(getApplicationContext(), "La grafica aparecera dentro de poco", Toast.LENGTH_LONG).show();
+                   Toast.makeText(getApplicationContext(), "La gráfica aparecerá dentro de poco", Toast.LENGTH_LONG).show();
                    mWebView.loadUrl("javascript:graficaBML(\""+cadena+"\",\""+this.title+"\")");
             	   
                }
@@ -154,11 +154,11 @@ public class GraficaTemp extends Activity {
         
         progresBar = new ProgressDialog(this);
         if(origen.equals("Nacional")){
-        	new ReadJSON("Nacional", "EntFed_Dsc", this.bml).execute("http://200.23.107.50:8083/siiecon.asmx/indicadorEstatal?IdIndicador="+semaforo);
+        	new ReadJSON(bundle.getString("semString") + " - " + origen, "EntFed_Dsc", this.bml).execute("http://200.23.107.50:8083/siiecon.asmx/indicadorEstatal?IdIndicador="+semaforo);
         }else if(origen.equals("Estatal")){
-        	new ReadJSON("Estatal", "NombrePlantel", this.bml).execute("http://200.23.107.50:8083/siiecon.asmx/indicadorPlantel?pIdEntidad="+estado+"&IdIndicador="+semaforo);
+        	new ReadJSON(bundle.getString("semString") + " - " + origen, "NombrePlantel", this.bml).execute("http://200.23.107.50:8083/siiecon.asmx/indicadorPlantel?pIdEntidad="+estado+"&IdIndicador="+semaforo);
         }else
-        	new ReadJSON("Plantel", "Nombre", this.bml).execute("http://200.23.107.50:8083/siiecon.asmx/situacionCt?pCt=" + plantel +"&pIdIndicador=" +  semaforo);
+        	new ReadJSON(bundle.getString("semString") + " - " + origen, "Nombre", this.bml).execute("http://200.23.107.50:8083/siiecon.asmx/situacionCt?pCt=" + plantel +"&pIdIndicador=" +  semaforo);
 		
        
         

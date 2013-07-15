@@ -84,7 +84,7 @@
     // Ticks should match up one for each y value (category) in the series.
     		var ticks = [];
 
-
+		var titleGraph = titleParam;
 
     		var aSplit = cadena.split("-");
 			
@@ -112,11 +112,11 @@
 
 
 	//document.getElementById("tit").innerHTML = titleParam;
-             if(titleParam == "Nacional"){
+             if(titleParam.indexOf("Nacional") != -1){
 
                 document.getElementById('chart1').style.width = '2000px';
                 
-            }else if(titleParam == "Estatal"){
+            }else if(titleParam.indexOf("Estatal") != -1){
                 var tamParcial = s1.length * 100;
                 var tamTotal = tamParcial.toString() + "px";
                 document.getElementById('chart1').style.width = tamTotal;
@@ -127,6 +127,7 @@
             
 
 		var plot1 = $.jqplot('chart1', [s1, s2, s3], {
+			title:titleGraph,
         // The "seriesDefaults" option is an options object that will
         // be applied to all series in the chart.
         seriesDefaults:{

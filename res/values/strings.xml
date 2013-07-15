@@ -5,7 +5,7 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="estatal">Seleccione un Estado</string>
-    <string name="title_activity_principal">Menu inicial</string>
+    <string name="title_activity_principal">Menú Inicial</string>
     <string name="title_activity_nacional">Indicadores Nacionales por Sistema</string>
     <string name="title_activity_ind_por_sist">Indicadores por Sistema</string>
     <string name="title_activity_andh">Andh</string>
@@ -26,6 +26,6 @@
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
-    <string name="title_activity_grafica_temp">Grafica de resultados</string>
+    <string name="title_activity_grafica_temp">Gráfica de resultados</string>
 
 </resources>
